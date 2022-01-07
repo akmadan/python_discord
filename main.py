@@ -22,8 +22,4 @@ async def on_message(message):
         if('kill' in msg):
             await message.channel.purge(limit = 1)
 
-        
-
-
-
 client.run(token)
