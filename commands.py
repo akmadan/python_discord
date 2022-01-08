@@ -1,28 +1,25 @@
 import discord 
 from discord.ext import commands 
-import tokens
-import requests
-import json
+import tokens 
+import requests 
 
-client = commands.Bot(command_prefix = "/") 
 
-@client.command() 
-async def hello(ctx, *args):
-    # for arg in args:
-    #     await ctx.send(arg) 
-    await ctx.send(ctx.author) 
-    await ctx.send(ctx.message) 
+
+client = commands.Bot(command_prefix='/') 
+
 
 @client.command()
-async def numbers(ctx, arg):
-    api_string = 'http://numbersapi.com/' +str(arg)+'/math'
-    response = requests.get(api_string)
-    print(response.text)
-    await ctx.send(response.text)
+async def hello(context, *args):
+    for arg in args: 
 
-
-    
-client.run(tokens.TOKEN) 
+        await context.send(arg)
 
 
 
+@client.command()
+async def numbers(context, arg): 
+    api_string = 'http://numbersapi.com/' + str(arg) +'/math'
+    response = requests.get(api_string) 
+    await context.send(response.text)
+
+client.run(tokens.TOKEN)
